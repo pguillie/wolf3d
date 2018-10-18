@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
+#    By: paul <paul@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/18 14:01:28 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/18 20:33:10 by paul             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= wolf3d
 CC		= gcc
+LMATH	= -lm
 WFLAGS	= -Wall -Werror -Wextra
 CFLAGS	= $(WFLAGS)
 
@@ -35,7 +36,7 @@ OBJECTS	= $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
+	$(CC) $(CFLAGS) $(LMATH) -o $@ $(OBJECTS)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
