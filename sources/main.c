@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 13:46:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/19 19:03:49 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/19 19:09:21 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ int	main(void)
 	foo.x = 2.5;
 	foo.y = 2.5;
 	foo.fov = 60;
-	printf("x : %f\n", get_wall_x(foo, map));
-	printf("y : %f\n", get_wall_y(foo, map));
+	if (foo.dir != (float)M_PI_2 && foo.dir != (float)-M_PI_2)
+		printf("x : %f\n", get_wall_x(foo, map));
+	if (foo.dir != 0 && foo.dir != (float)M_PI)
+		printf("y : %f\n", get_wall_y(foo, map));
 
     // SDL_Quit();
 	return (0);
