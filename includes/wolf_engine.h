@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf_engine.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/19 13:47:06 by pguillie          #+#    #+#             */
+/*   Updated: 2018/10/19 13:47:07 by pguillie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF_ENGINE_H
 # define WOLF_ENGINE_H
 
@@ -18,7 +30,7 @@ struct s_player
 
 struct s_engine
 {
-	//map;
+	struct s_map map;
 	struct s_player player;
 };
 
