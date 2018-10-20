@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_wall.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/10/20 12:34:18 by paul             ###   ########.fr       */
+/*   Updated: 2018/10/20 15:20:17 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	get_wall_y(t_player p, t_map m, t_wall *w)
 	else
 	{
 		y = (int)floorf(p.y);
-		dy =  -1;
+		dy = -1;
 		w->dir = SOUTH;
 	}
 	x = p.x + (y - p.y) / tan(a);

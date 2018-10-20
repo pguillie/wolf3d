@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paul <paul@student.42.fr>                  +#+  +:+       +#+         #
+#    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/20 12:30:01 by paul             ###   ########.fr        #
+#    Updated: 2018/10/20 18:12:52 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= wolf3d
 CC		= gcc
 LMATH	= -lm
+LSDL	= /Library/Frameworks/SDL2.framework/SDL2
 WFLAGS	= -Wall -Werror -Wextra
 CFLAGS	= $(WFLAGS)
 
@@ -26,6 +27,7 @@ HEADERS	= $(addprefix $(INCDIR), \
 )
 
 SOURCES	= $(addprefix $(SRCDIR), \
+	game_loop.c \
 	get_wall.c \
 	main.c \
 )
@@ -37,7 +39,7 @@ OBJECTS	= $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJECTS)
-	$(CC) $(CFLAGS) $(LMATH) -o $@ $(OBJECTS)
+	$(CC) $(CFLAGS) $(LMATH) $(LSDL) -o $@ $(OBJECTS)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<

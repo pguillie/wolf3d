@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 13:47:05 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/20 18:14:04 by pguillie         ###   ########.fr       */
+/*   Created: 2018/10/20 18:08:31 by pguillie          #+#    #+#             */
+/*   Updated: 2018/10/20 18:13:06 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF_3D_H
-# define WOLF_3D_H
+#include "wolf3d.h"
 
-# include <stdlib.h>
-# include <math.h>
-# include <SDL2/SDL.h>
-# include "wolf_engine.h"
-//
-#include <string.h>
-#include <stdio.h>
+int		game_loop(t_engine data)
+{
+	SDL_Window *win;
 
-int		game_loop(t_engine data);
-float	get_wall(t_player p, t_map m, t_wall *w);
+	SDL_Init(SDL_INIT_VIDEO); //
 
-#endif
+	win = SDL_CreateWindow("Wolf3D",
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		640, 480,
+		0);
+
+	if (win == NULL)
+		printf("FAILED to create window\n");
+
+	t_wall w;
+	printf("%f\n", get_wall(data.player, data.map, &w));
+
+	SDL_Delay(5000);
+
+	SDL_DestroyWindow(win);
+
+    SDL_Quit();
+	return (0);
+}
