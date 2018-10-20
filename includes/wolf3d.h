@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 13:47:05 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/19 18:23:35 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/20 12:29:29 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 //
 #include <string.h>
 #include <stdio.h>
+
+float	get_wall(t_player p, t_map m, t_wall *w);
 
 #endif

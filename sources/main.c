@@ -3,70 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 13:46:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/19 19:09:21 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/20 12:35:01 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-float	get_wall_x(t_player p, t_map m)
-{
-	int		x;
-	int		dx;
-	float	y;
-	float	a;
-
-	a = -p.dir;
-	if (a > -M_PI_2 && a < M_PI_2)
-	{
-		x = (int)ceilf(p.x);
-		dx = 1;
-	}
-	else
-	{
-		x = (int)floorf(p.x);
-		dx = -1;
-	}
-	y = p.y + (x - p.x) * tan(a);
-	while (!(x < 0) && x < m.x && !(y < 0) && y < m.y
-		&& m.layout[(int)floorf(y)][(dx > 0 ? x : x - 1)] == '0')
-	{
-		x += dx;
-		y += dx * tan(a);
-	}
-	return (sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y)));
-}
-
-float	get_wall_y(t_player p, t_map m)
-{
-	int		y;
-	int		dy;
-	float	x;
-	float	a;
-
-	a = -p.dir;
-	if (a > 0)
-	{
-		y = (int)ceilf(p.y);
-		dy = 1;
-	}
-	else
-	{
-		y = (int)floorf(p.y);
-		dy =  -1;
-	}
-	x = p.x + (y - p.y) / tan(a);
-	while (y >= 0 && y < m.y && x >= 0 && x < m.x
-		&& m.layout[(dy > 0 ? y : y - 1)][(int)floorf(x)] == '0')
-	{
-		y += dy;
-		x += dy / tan(a);
-	}
-	return (sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y)));
-}
 
 int	main(void)
 {
@@ -84,15 +28,13 @@ int	main(void)
 
 	///
 	t_player foo;
-	foo.dir = -M_PI_2;
+	foo.dir = -(3 * M_PI_4);
 	foo.x = 2.5;
 	foo.y = 2.5;
 	foo.fov = 60;
-	if (foo.dir != (float)M_PI_2 && foo.dir != (float)-M_PI_2)
-		printf("x : %f\n", get_wall_x(foo, map));
-	if (foo.dir != 0 && foo.dir != (float)M_PI)
-		printf("y : %f\n", get_wall_y(foo, map));
 
+	t_wall w;
+	printf("%f\n", get_wall(foo, map, &w));
     // SDL_Quit();
 	return (0);
 }

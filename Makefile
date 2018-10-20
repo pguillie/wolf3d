@@ -6,7 +6,7 @@
 #    By: paul <paul@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/18 20:33:10 by paul             ###   ########.fr        #
+#    Updated: 2018/10/20 12:30:01 by paul             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ HEADERS	= $(addprefix $(INCDIR), \
 )
 
 SOURCES	= $(addprefix $(SRCDIR), \
+	get_wall.c \
 	main.c \
 )
 
