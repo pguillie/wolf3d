@@ -6,42 +6,26 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/21 21:15:22 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/21 20:43:11 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf3d
+NAME = libft.a
 
 CC = gcc
 WFLAGS = -Wall -Werror -Wextra
 CFLAGS = $(WFLAGS)
-
-LMATH = -lm
-# SDL = SDL2/sources/SDL2.a?
-ifeq ($(shell uname), Darwin)
-	LSDL = /Library/Frameworks/SDL2.framework/SDL2
-else
-	LSDL = -lSDL2
-endif
-LIBFT = libft/libft.a
-LFT = -Llibft -lft
 
 INCDIR = inc/
 SRCDIR = src/
 OBJDIR = obj/
 
 HEADERS = $(addprefix $(INCDIR), \
-	wolf3d.h \
-	wolf_engine.h \
+	libft.h \
 )
 
 SOURCES = $(addprefix $(SRCDIR), \
-	engine_start.c \
-	engine_stop.c \
-	ft_perror.c \
-	game.c \
-	get_wall.c \
-	main.c \
+	ft_strlen.c \
 )
 
 OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
@@ -50,24 +34,20 @@ OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJDIR) $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LMATH) $(LSDL) $(LFT)
+$(NAME): $(OBJDIR) $(OBJECTS)
+	ar rc $@ $(OBJECTS)
+	ranlib $@
 
-$(LIBFT):
-	make -C $(dir $(LIBFT))
-
-$(OBJDIR)%.o: $(SRCDIR)%.c #$(HEADERS) Makefile
+$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 clean:
-	make -C $(dir $(LIBFT)) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	make -C $(dir $(LIBFT)) fclean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all

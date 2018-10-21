@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   t_engine.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 13:47:05 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/20 18:14:04 by pguillie         ###   ########.fr       */
+/*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
+/*   Updated: 2018/10/21 21:10:47 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF_3D_H
-# define WOLF_3D_H
+#ifndef T_ENGINE_H
+# define T_ENGINE_H
 
-# include <stdlib.h>
-# include <math.h>
-# include <SDL2/SDL.h>
-# include "wolf_engine.h"
-//
-#include <string.h>
-#include <stdio.h>
+struct	s_player
+{
+	float	x;
+	float	y;
+	float	dir;
+	int		fov;
+};
 
-int		game_loop(t_engine data);
-float	get_wall(t_player p, t_map m, t_wall *w);
+struct	s_map
+{
+	int		w;
+	int		h;
+	char	**layout;
+};
+
+struct	s_window
+{
+	SDL_Window	*ptr;
+	int			w;
+	int			h;
+};
+
+struct	s_engine
+{
+	struct s_player	player;
+	struct s_map	map;
+	struct s_window	window;
+};
+
+typedef struct s_engine	t_engine;
 
 #endif

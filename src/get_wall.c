@@ -6,13 +6,13 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/10/20 15:20:17 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/21 21:11:46 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static int	get_wall_x(t_player p, t_map m, t_wall *w)
+static int	get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		x;
 	int		dx;
@@ -35,18 +35,18 @@ static int	get_wall_x(t_player p, t_map m, t_wall *w)
 		w->dir = EAST;
 	}
 	y = p.y + (x - p.x) * tan(a);
-	while (!(x < 0) && x < m.x && !(y < 0) && y < m.y
+	while (!(x < 0) && x < m.w && !(y < 0) && y < m.h
 		&& m.layout[(int)floorf(y)][(dx > 0 ? x : x - 1)] == '0')
 	{
 		x += dx;
 		y += dx * tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = NONE;
+	w->type = DEFAULT;
 	return (1);
 }
 
-static int	get_wall_y(t_player p, t_map m, t_wall *w)
+static int	get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		y;
 	int		dy;
@@ -69,26 +69,26 @@ static int	get_wall_y(t_player p, t_map m, t_wall *w)
 		w->dir = SOUTH;
 	}
 	x = p.x + (y - p.y) / tan(a);
-	while (y >= 0 && y < m.y && x >= 0 && x < m.x
+	while (!(x < 0) && x < m.w && !(y < 0) && y < m.h
 		&& m.layout[(dy > 0 ? y : y - 1)][(int)floorf(x)] == '0')
 	{
 		y += dy;
 		x += dy / tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = NONE;
+	w->type = DEFAULT;
 	return (1);
 }
 
-float		get_wall(t_player p, t_map m, t_wall *w)
+float		get_wall(t_engine d, t_wall *w)
 {
 	t_wall	wx;
 	t_wall	wy;
 	int		success_x;
 	int		success_y;
 
-	success_x = get_wall_x(p, m, &wx);
-	success_y = get_wall_y(p, m, &wy);
+	success_x = get_wall_x(d.player, d.map, &wx);
+	success_y = get_wall_y(d.player, d.map, &wy);
 	if (!success_x)
 		*w = wy;
 	else if (!success_y)
