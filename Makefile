@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/21 21:15:22 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/22 18:24:45 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,18 @@ HEADERS = $(addprefix $(INCDIR), \
 )
 
 SOURCES = $(addprefix $(SRCDIR), \
+	delete_data.c \
 	engine_start.c \
 	engine_stop.c \
 	ft_perror.c \
+	game_event.c \
+	game_move.c \
+	game_rotate.c \
 	game.c \
 	get_wall.c \
 	main.c \
+	read_data.c \
+	render_image.c \
 )
 
 OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)

@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:28:33 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/21 21:16:38 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:06:35 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void		game(t_engine data)
 {
-	//loop events
-	SDL_Delay(3000);
-	(void)data;
+	int			loop;
+
+	loop = 1;
+	while (loop)
+	{
+		render_image(data);
+		loop = game_event(&data);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/21 21:03:58 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/22 10:52:16 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ enum	e_error
 	ENONE,
 	EUSAGE,
 	ESDLINIT,
-	ESDLWIN
+	ESDLWINDOW,
+	ESDLRENDERER
 };
 
 typedef enum e_error	t_error;

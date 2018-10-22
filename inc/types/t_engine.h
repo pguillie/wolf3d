@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/21 21:10:47 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/22 10:57:59 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ struct	s_map
 
 struct	s_window
 {
-	SDL_Window	*ptr;
-	int			w;
-	int			h;
+	SDL_Window		*ptr;
+	SDL_Renderer	*renderer;
+	int				w;
+	int				h;
 };
 
 struct	s_engine
