@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/22 18:24:45 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/23 18:01:11 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SOURCES = $(addprefix $(SRCDIR), \
 	game_event.c \
 	game_move.c \
 	game_rotate.c \
+	game_update.c \
 	game.c \
 	get_wall.c \
 	main.c \
@@ -62,7 +63,7 @@ $(NAME): $(LIBFT) $(OBJDIR) $(OBJECTS)
 $(LIBFT):
 	make -C $(dir $(LIBFT))
 
-$(OBJDIR)%.o: $(SRCDIR)%.c #$(HEADERS) Makefile
+$(OBJDIR)%.o: $(SRCDIR)%.c # $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
 
 $(OBJDIR):

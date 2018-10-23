@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/22 18:21:53 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/23 18:03:02 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ t_error	read_data(const char *file, t_engine *data);
 void	delete_data(t_engine data);
 void	game(t_engine data);
 int		game_event(t_engine *data);
-void	game_move(t_engine *data, t_move move);
-void	game_rotate(t_engine *data, t_rotate rotate);
+void	game_update(t_engine *data);
+void	game_move(t_engine *data, float angle);
+void	game_rotate(t_engine *data, int sign);
 void	render_image(t_engine data);
 float	get_wall(t_engine data, t_wall *w);
 

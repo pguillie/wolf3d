@@ -6,24 +6,27 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:17:37 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/22 18:37:31 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/23 17:56:32 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	game_move(t_engine *data, t_move move)
+void	game_move(t_engine *data, float angle)
 {
-	float	angle;
+	float	x;
+	float	y;
+	float	dist;
 
-	if (move == MOVE_UP)
-		angle = data->player.dir;
-	if (move == MOVE_DOWN)
-		angle = data->player.dir + M_PI;
-	if (move == MOVE_RIGHT)
-		angle = data->player.dir - M_PI_2;
-	if (move == MOVE_LEFT)
-		angle = data->player.dir + M_PI_2;
-	data->player.x += cos(angle) / 10;
-	data->player.y -= sin(angle) / 10;
+	printf("angle: %f\n", angle);
+	dist = (float)data->player.speed / SPEED_MAX;
+	angle += data->player.dir;
+	x = data->player.x + cos(angle) * dist;
+	y = data->player.y - sin(angle) * dist;
+	if (!(x < 0) && x < data->map.w
+		&& data->map.layout[(int)data->player.y][(int)x] == ' ')
+		data->player.x = x;
+	if (!(y < 0) && y < data->map.h
+		&& data->map.layout[(int)y][(int)data->player.x] == ' ')
+		data->player.y = y;
 }

@@ -6,26 +6,20 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:22:49 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/22 18:49:45 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/23 17:59:35 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	game_rotate(t_engine *data, t_rotate rotate)
+void	game_rotate(t_engine *data, int sign)
 {
-	if (rotate == ROTATE_LEFT)
-	{
-		if (!(data->player.dir < M_PI))
-			data->player.dir -= 2 * M_PI + M_PI / 100;
-		else
-		data->player.dir += M_PI / 100;
-	}
-	else if (rotate == ROTATE_RIGHT)
-	{
-		if (data->player.dir < -M_PI)
-			data->player.dir += 2 * M_PI - M_PI / 100;
-		else
-			data->player.dir -= M_PI / 100;
-	}
+	float	rot;
+
+	rot = sign * (2 * (float)M_PI) / (SPEED_MAX - data->player.speed);
+	data->player.dir += rot;
+	if (!(data->player.dir + rot < (float)M_PI))
+		data->player.dir -= 2 * (float)M_PI;
+	else if (data->player.dir - rot < (float)-M_PI)
+		data->player.dir += 2 * (float)M_PI;
 }
