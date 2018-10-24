@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 12:12:23 by pguillie          #+#    #+#             */
-/*   Updated: 2017/09/28 14:13:17 by lcordier         ###   ########.fr       */
+/*   Updated: 2018/10/24 19:38:21 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_strdel(char **as)
 {
 	size_t	i;
 
-	if (as)
+	if (as && *as)
 	{
 		i = 0;
 		while ((*as)[i])
