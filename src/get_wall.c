@@ -6,13 +6,26 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/10/23 16:31:56 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:51:27 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static int	get_wall_x(struct s_player p, struct s_map m, t_wall *w)
+static enum e_wtype	get_wall_type(struct s_map m, int x, int y)
+{
+	char	c;
+
+	if (x < 0 || y < 0 || !(x < m.w) || !(y < m.h))
+		return (WDEFAULT);
+	c = m.layout[y][x];
+	if (c == 'w')
+		return (WWOOD);
+	else
+		return (WDEFAULT);
+}
+
+static int			get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		x;
 	int		dx;
@@ -35,18 +48,18 @@ static int	get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 		w->dir = EAST;
 	}
 	y = p.y + (x - p.x) * tan(a);
-	while (!(x < 0) && x < m.w && !(y < 0) && y < m.h
+	while (!(x < 1) && x < m.w && !(y < 0) && y < m.h
 		&& m.layout[(int)y][(dx > 0 ? x : x - 1)] == ' ')
 	{
 		x += dx;
 		y += dx * tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = DEFAULT;
+	w->type = get_wall_type(m, (dx > 0 ? x : x - 1), (int)y);
 	return (1);
 }
 
-static int	get_wall_y(struct s_player p, struct s_map m, t_wall *w)
+static int			get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		y;
 	int		dy;
@@ -69,18 +82,18 @@ static int	get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 		w->dir = SOUTH;
 	}
 	x = p.x + (y - p.y) / tan(a);
-	while (!(x < 0) && x < m.w && !(y < 0) && y < m.h
+	while (!(x < 0) && x < m.w && !(y < 1) && y < m.h
 		&& m.layout[(dy > 0 ? y : y - 1)][(int)x] == ' ')
 	{
 		y += dy;
 		x += dy / tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = DEFAULT;
+	w->type = get_wall_type(m, (int)x, (dy > 0 ? y : y - 1));
 	return (1);
 }
 
-float		get_wall(t_engine d, t_wall *w)
+float				get_wall(t_engine d, t_wall *w)
 {
 	t_wall	wx;
 	t_wall	wy;

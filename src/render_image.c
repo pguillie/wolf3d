@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/23 10:48:37 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:54:03 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static void	render_colum(t_wall wall, struct s_window win, int col)
 				shadow_dir = 20 + (int)(10 * wall.dist);
 			else if (wall.dir == WEST)
 				shadow_dir = 60 + (int)(10 * wall.dist);
-			SDL_SetRenderDrawColor(win.renderer, 200 - shadow_dir, 0, 0, 255);
+			if (wall.type == WWOOD)
+				SDL_SetRenderDrawColor(win.renderer, 200 - shadow_dir, 0, 0, 255);
+			else
+				SDL_SetRenderDrawColor(win.renderer, 0, 200 - shadow_dir, 0, 255);
 		}
 		SDL_RenderDrawPoint(win.renderer, col, i);
 		i++;

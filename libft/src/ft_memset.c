@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguillie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 13:22:56 by pguillie         ###   ########.fr       */
+/*   Created: 2016/11/04 11:06:33 by pguillie          #+#    #+#             */
+/*   Updated: 2017/02/22 18:05:43 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "libft.h"
 
-enum	e_error
+void	*ft_memset(void *s, int c, size_t n)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER
-};
+	size_t			i;
+	unsigned char	*str;
 
-typedef enum e_error	t_error;
-
-#endif
+	str = (unsigned char*)s;
+	i = 0;
+	while (i < n)
+		str[i++] = (unsigned char)c;
+	return (s);
+}

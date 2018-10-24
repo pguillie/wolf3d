@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguillie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 13:22:56 by pguillie         ###   ########.fr       */
+/*   Created: 2016/11/04 12:12:23 by pguillie          #+#    #+#             */
+/*   Updated: 2017/09/28 14:13:17 by lcordier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "libft.h"
 
-enum	e_error
+void	ft_strdel(char **as)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER
-};
+	size_t	i;
 
-typedef enum e_error	t_error;
-
-#endif
+	if (as)
+	{
+		i = 0;
+		while ((*as)[i])
+			(*as)[i++] = '\0';
+		free(*as);
+		*as = NULL;
+	}
+}

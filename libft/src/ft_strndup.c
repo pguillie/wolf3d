@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 13:22:56 by pguillie         ###   ########.fr       */
+/*   Created: 2016/11/13 15:09:25 by pguillie          #+#    #+#             */
+/*   Updated: 2018/10/24 13:00:06 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "libft.h"
 
-enum	e_error
+char	*ft_strndup(const char *s, size_t n)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER
-};
+	char	*str;
+	size_t	len;
 
-typedef enum e_error	t_error;
-
-#endif
+	len = ft_strlen(s);
+	if (n < len)
+		len = n;
+	if (!(str = malloc(len)))
+		return (NULL);
+	while (len--)
+		str[len] = s[len];
+	return (str);
+}

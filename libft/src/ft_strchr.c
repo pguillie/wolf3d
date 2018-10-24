@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pguillie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 13:22:56 by pguillie         ###   ########.fr       */
+/*   Created: 2016/11/07 11:19:29 by pguillie          #+#    #+#             */
+/*   Updated: 2017/03/07 20:02:41 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "libft.h"
 
-enum	e_error
+char	*ft_strchr(const char *s, int c)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER
-};
+	int		i;
 
-typedef enum e_error	t_error;
-
-#endif
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char*)s + i);
+		i++;
+	}
+	if (s[i] == c)
+		return ((char*)s + i);
+	return (NULL);
+}

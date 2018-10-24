@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/23 16:45:16 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:58:25 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include "types/t_rotate.h"
 
 # define SPEED_MAX 100
+
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
+// # define WIN_WIDTH 1920
+// # define WIN_HEIGHT 1080
 
 struct	s_player
 {

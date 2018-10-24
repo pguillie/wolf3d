@@ -6,16 +6,18 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/23 18:03:02 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/24 13:08:30 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_3D_H
 # define WOLF_3D_H
 
+# include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
 # include <SDL2/SDL.h>
+# include <fcntl.h>
 
 # include "libft/libft.h"
 # include "types/t_coord.h"
@@ -29,9 +31,6 @@
 #include <string.h>
 #include <stdio.h>
 //
-
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
 
 t_error	engine_start(t_engine *engine_data, const char *data_file);
 void	engine_stop(t_engine engine_data);

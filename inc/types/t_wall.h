@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:09:02 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/21 21:04:19 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:34:09 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ enum	e_wdir
 
 enum	e_wtype
 {
-	DEFAULT
+	WDEFAULT,
+	WWOOD
 };
 
 struct	s_wall
