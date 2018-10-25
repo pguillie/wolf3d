@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 11:25:18 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/25 16:18:17 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,15 @@ void		render_image(t_engine data)
 {
 	t_wall	w;
 	float	angle;
-	float	fovr;
 	int		px;
 
 	px = 0;
 	// printf("DIRECTION: %f\n", data.player.dir);
 	angle = data.player.dir;
-	fovr = data.player.fov * M_PI / 180;
 	while (px < data.window.w)
 	{
-		data.player.dir = angle + fovr / 2
-			- ((float)px * fovr) / data.window.w;
+		data.player.dir = angle + data.player.fov / 2
+			- ((float)px * data.player.fov) / data.window.w;
 		/* float foo =  */get_wall(data, &w);
 		w.dist *= cos(angle - data.player.dir);
 		// printf(/* "dir: %f,  */"dist: %f\n", /* data.player.dir,  */foo);

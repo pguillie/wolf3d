@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 18:52:16 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/25 18:10:56 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,13 @@
 
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
-// # define WIN_WIDTH 1920
-// # define WIN_HEIGHT 1080
 
 struct	s_player
 {
 	float		x;
 	float		y;
 	float		dir;
-	int			fov;
-	int			speed;
+	float		fov;
 	t_move		move[4];
 	t_rotate	rotate[2];
 };

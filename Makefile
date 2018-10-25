@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/23 18:01:11 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/25 16:20:02 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,14 @@ OBJDIR = obj/
 
 HEADERS = $(addprefix $(INCDIR), \
 	wolf3d.h \
-	wolf_engine.h \
+	types/t_coord.h \
+	types/t_engine.h \
+	types/t_error.h \
+	types/t_move.h \
+	types/t_rotate.h \
+	types/t_wall.h \
+	libft/get_next_line.h \
+	libft/libft.h \
 )
 
 SOURCES = $(addprefix $(SRCDIR), \
@@ -63,7 +70,7 @@ $(NAME): $(LIBFT) $(OBJDIR) $(OBJECTS)
 $(LIBFT):
 	make -C $(dir $(LIBFT))
 
-$(OBJDIR)%.o: $(SRCDIR)%.c # $(HEADERS) Makefile
+$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ -c $<
 
 $(OBJDIR):

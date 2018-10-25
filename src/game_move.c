@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:17:37 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 11:25:12 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/25 16:14:28 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	game_move(t_engine *data, float angle)
 	float	y;
 	float	dist;
 
-	dist = 0.1;//(float)data->player.speed / SPEED_MAX;
+	dist = 0.1;
 	angle += data->player.dir;
 	x = data->player.x + cos(angle) * dist;
 	y = data->player.y - sin(angle) * dist;
