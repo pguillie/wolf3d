@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 10:31:18 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 20:25:45 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/25 10:28:55 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_error	layout_regularize(t_engine *data)
 		{
 			if ((aligned = (char *)malloc(data->map.w)) == NULL)
 				return (ENOMEM);
-			ft_memset(aligned, ' ', data->map.w - i);
+			ft_memset(aligned + i, ' ', data->map.w - i);
 			while (i--)
 				aligned[i] = data->map.layout[h][i];
 			free(data->map.layout[h]);

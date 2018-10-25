@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 13:08:30 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/25 12:01:35 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include "types/t_wall.h"
 
 // debug
-#include <string.h>
 #include <stdio.h>
 //
 
