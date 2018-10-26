@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/10/24 13:02:18 by pguillie         ###   ########.fr        #
+#    Updated: 2018/10/26 12:34:29 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,11 @@ HEADERS = $(addprefix $(INCDIR), \
 SOURCES = $(addprefix $(SRCDIR), \
 	ft_memmove.c \
 	ft_memset.c \
-	ft_strappend.c \
 	ft_strchr.c \
 	ft_strdel.c \
+	ft_strdup.c \
 	ft_strlen.c \
 	ft_strndup.c \
-	ft_strnew.c \
 	get_next_line.c \
 )
 

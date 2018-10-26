@@ -6,37 +6,57 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 19:32:32 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 19:38:49 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/26 12:33:20 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		get_next_line(int fd, char **line)
+static char	*ft_strnapp(char **str, char *to_add, size_t n)
 {
-	static char	*s = NULL;
-	char		b[BUFF_SIZE + 1];
-	size_t		i;
-	int			c;
+	char	*res;
+	size_t	len;
 
-	if (!line || fd < 0 || !((c = BUFF_SIZE) > 0))
+	len = ft_strlen(*str);
+	if ((res = (char *)malloc(len + n + 1)) == NULL)
+		return (NULL);
+	res[len + n] = '\0';
+	while (n--)
+		res[len + n] = to_add[n];
+	while (len--)
+		res[len] = (*str)[len];
+	if (*str)
+		free(*str);
+	*str = res;
+	return (res);
+}
+
+int			get_next_line(int fd, char **line)
+{
+	static char	*s;
+	char		buff[BUFF_SIZE];
+	char		*nl;
+	size_t		c;
+
+	if (!line || fd < 0)
 		return (-1);
-	while (!ft_strchr(s, '\n') && c == BUFF_SIZE)
+	c = BUFF_SIZE;
+	while ((nl = ft_strchr(s, '\n')) == NULL && c == BUFF_SIZE)
 	{
-		ft_memset(b, 0, BUFF_SIZE + 1);
-		c = read(fd, b, BUFF_SIZE);
-		(s = ft_strappend(s, b)) && c < 0 ? ft_strdel(&s) : 0;
-		if (!s)
-			return (-1);
+		ft_memset(buff, 0, BUFF_SIZE);
+		if ((c = read(fd, buff, BUFF_SIZE)))
+		{
+			if (ft_strnapp(&s, buff, c) == NULL)
+				return (-1);
+		}
 	}
-	i = 0;
-	while (!(*line = NULL) && s[i] && s[i] != '\n')
-		i++;
-	s[i] && !(*line = ft_strndup(s, i)) ? ft_strdel(&s) : 0;
-	if (!s)
-		return (-1);
-	ft_memmove(s, s + i + (s[i] ? 1 : 0),
-		ft_strlen(s + i + (s[i] ? 1 : 0)) + 1);
-	s[0] == 0 ? ft_strdel(&s) : 0;
-	return (c == BUFF_SIZE || s || *line ? 1 : 0);
+	if (nl != NULL)
+	{
+		*line = ft_strndup(s, (size_t)nl - (size_t)s);
+		ft_memmove(s, nl + 1, ft_strlen(nl));
+		return (1);
+	}
+	*line = ft_strdup(s);
+	free(s);
+	return (0);
 }

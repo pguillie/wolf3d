@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 10:31:18 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 18:14:17 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/26 12:27:21 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static t_error	layout_append(t_engine *data, char *line)
 	new_layout[--height] = line;
 	while (height--)
 		new_layout[height] = data->map.layout[height];
-	free(data->map.layout);
+	if (height > 1)
+		free(data->map.layout);
 	data->map.layout = new_layout;
 	return (ENONE);
 }
