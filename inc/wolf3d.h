@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 12:01:35 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/26 19:47:08 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 // debug
 #include <stdio.h>
+# include <time.h>
 //
 
 t_error	engine_start(t_engine *engine_data, const char *data_file);

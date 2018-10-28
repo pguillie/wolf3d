@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 18:10:56 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/27 17:17:24 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 
 # define SPEED_MAX 100
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+// # define WIN_WIDTH 640
+// # define WIN_HEIGHT 480
+
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
 struct	s_player
 {

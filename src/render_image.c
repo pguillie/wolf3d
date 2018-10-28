@@ -6,66 +6,62 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/25 16:18:17 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/28 19:09:49 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	render_colum(t_wall wall, struct s_window win, int col)
+static void	render_column(t_wall wall, struct s_window win, int col)
 {
-	int	i;
-	int	wall_top;
-	int	wall_bot;
-	int	shadow_dir;
+	SDL_Point	pts[win.h];
+	int			i;
+	int			j;
 
 	i = 0;
-	wall_top = win.h / 2 - (win.h / wall.dist) / 2;
-	wall_bot = win.h / 2 + (win.h / wall.dist) / 2;
 	while (i < win.h)
 	{
-		if (i < wall_top)
-			SDL_SetRenderDrawColor(win.renderer, 42, 42, 42, 255);
-		else if (i > wall_bot)
-			SDL_SetRenderDrawColor(win.renderer, 84, 84, 84, 255);
-		else
-		{
-			if (wall.dir == NORTH)
-				shadow_dir = 100 + (int)(10 * wall.dist);
-			else if (wall.dir == SOUTH)
-				shadow_dir = 0 + (int)(10 * wall.dist);
-			else if (wall.dir == EAST)
-				shadow_dir = 20 + (int)(10 * wall.dist);
-			else if (wall.dir == WEST)
-				shadow_dir = 60 + (int)(10 * wall.dist);
-			if (wall.type == WWOOD)
-				SDL_SetRenderDrawColor(win.renderer, 200 - shadow_dir, 0, 0, 255);
-			else
-				SDL_SetRenderDrawColor(win.renderer, 0, 200 - shadow_dir, 0, 255);
-		}
-		SDL_RenderDrawPoint(win.renderer, col, i);
+		pts[i].x = col;
+		pts[i].y = i;
 		i++;
 	}
+	i = (wall.dist > 1 ? win.h / 2 - (win.h / wall.dist) / 2 : 0);
+	j = (wall.dist > 1 ? win.h / 2 + (win.h / wall.dist) / 2 : win.h);
+	SDL_SetRenderDrawColor(win.renderer, 42, 42, 42, 255);
+	SDL_RenderDrawPoints(win.renderer, pts, i);
+	SDL_SetRenderDrawColor(win.renderer, 200, 0, 0, 255);
+	SDL_RenderDrawPoints(win.renderer, pts + i, j - i);
+	SDL_SetRenderDrawColor(win.renderer, 142, 142, 142, 255);
+	SDL_RenderDrawPoints(win.renderer, pts + j, win.h - j);
 }
 
 void		render_image(t_engine data)
 {
 	t_wall	w;
+	float	dir;
 	float	angle;
 	int		px;
 
+//
+clock_t a;
+
 	px = 0;
 	// printf("DIRECTION: %f\n", data.player.dir);
-	angle = data.player.dir;
+	dir = data.player.dir;
+	data.player.dir += data.player.fov / 2;
+	angle = data.player.fov / data.window.w;
 	while (px < data.window.w)
 	{
-		data.player.dir = angle + data.player.fov / 2
-			- ((float)px * data.player.fov) / data.window.w;
+		a = clock();		
 		/* float foo =  */get_wall(data, &w);
-		w.dist *= cos(angle - data.player.dir);
+		w.dist *= cos(dir - data.player.dir);
+		printf("calc: %.2f - ", (float)(clock() - a));
 		// printf(/* "dir: %f,  */"dist: %f\n", /* data.player.dir,  */foo);
-		render_colum(w, data.window, px);
+		a = clock();
+		render_column(w, data.window, px);
+		printf("rend: %.2f\n", (float)(clock() - a));
 		px++;
+		data.player.dir -= angle;
 	}
 	SDL_RenderPresent(data.window.renderer);
 }
