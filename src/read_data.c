@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 10:31:18 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/26 12:27:21 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/28 19:15:53 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static t_error	layout_regularize(t_engine *data)
 static void		player_init(t_engine *data)
 {
 	data->player.dir = 0;
-	data->player.fov = (float)WIN_WIDTH / ((float)WIN_HEIGHT) * 2 * atan(0.5); // move to game loop, when resize
 	memset(data->player.move, 0, 4 * sizeof(t_move));
 	memset(data->player.rotate, 0, 2 * sizeof(t_rotate));
 }

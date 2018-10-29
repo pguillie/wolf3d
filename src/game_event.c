@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:37:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/23 18:10:57 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/28 19:31:23 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ static void	game_unset_action(SDL_Event event, t_engine *data)
 		data->player.rotate[ROTATE_RIGHT] = 0;
 }
 
+static void	engine_resize_window(SDL_Event event, t_engine *data)
+{
+	data->window.w = event.window.data1;
+	data->window.h = event.window.data2;
+}
+
 int			game_event(t_engine *data)
 {
 	SDL_Event	event;
@@ -58,6 +64,12 @@ int			game_event(t_engine *data)
 				return (0);
 			else
 				game_unset_action(event, data);
+		}
+		else if (event.type == SDL_WINDOWEVENT)
+		{
+			if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED
+				|| event.window.event == SDL_WINDOWEVENT_RESIZED)
+				engine_resize_window(event, data);
 		}
 		else if (event.type == SDL_QUIT)
 			return (0);

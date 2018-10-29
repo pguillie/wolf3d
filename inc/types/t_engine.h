@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/27 17:17:24 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/28 19:14:41 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ struct	s_player
 	float		x;
 	float		y;
 	float		dir;
-	float		fov;
 	t_move		move[4];
 	t_rotate	rotate[2];
 };
@@ -47,6 +46,7 @@ struct	s_window
 	SDL_Renderer	*renderer;
 	int				w;
 	int				h;
+	float			fov;
 };
 
 struct	s_engine

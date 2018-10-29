@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/28 19:09:49 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/10/29 18:26:37 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ void		render_image(t_engine data)
 	int		px;
 
 //
-clock_t a;
+// clock_t a;
 
 	px = 0;
 	// printf("DIRECTION: %f\n", data.player.dir);
 	dir = data.player.dir;
-	data.player.dir += data.player.fov / 2;
-	angle = data.player.fov / data.window.w;
+	data.player.dir += data.window.fov / 2;
+	angle = data.window.fov / data.window.w;
 	while (px < data.window.w)
 	{
-		a = clock();		
+		// a = clock();
 		/* float foo =  */get_wall(data, &w);
 		w.dist *= cos(dir - data.player.dir);
-		printf("calc: %.2f - ", (float)(clock() - a));
+		// printf("calc: %.2f - ", (float)(clock() - a));
 		// printf(/* "dir: %f,  */"dist: %f\n", /* data.player.dir,  */foo);
-		a = clock();
+		// a = clock();
 		render_column(w, data.window, px);
-		printf("rend: %.2f\n", (float)(clock() - a));
+		// printf("rend: %.2f\n", (float)(clock() - a));
 		px++;
 		data.player.dir -= angle;
 	}
