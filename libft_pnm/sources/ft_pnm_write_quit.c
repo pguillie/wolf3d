@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_wall.h                                           :+:      :+:    :+:   */
+/*   ft_pnm_write_quit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 17:09:02 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 15:34:09 by pguillie         ###   ########.fr       */
+/*   Created: 2018/11/03 11:39:06 by pguillie          #+#    #+#             */
+/*   Updated: 2018/11/08 16:47:17 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_WALL_H
-# define T_WALL_H
+#include "libft_pnm.h"
 
-enum	e_wdir
+int		ft_pnm_write_quit(t_pnm *data)
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
-};
+	int	ret;
 
-enum	e_wtype
-{
-	WDEFAULT,
-	WWOOD
-};
-
-struct	s_wall
-{
-	float			dist;
-	enum e_wdir		dir;
-	enum e_wtype	type;
-};
-
-typedef struct s_wall	t_wall;
-
-#endif
+	if (data == NULL)
+		return (-1);
+	ret = close(data->file);
+	data->file = -1;
+	data->width = 0;
+	data->height = 0;
+	data->plain = 0;
+	return (ret);
+}

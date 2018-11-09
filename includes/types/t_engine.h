@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/28 19:14:41 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/09 23:21:09 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 # include "types/t_move.h"
 # include "types/t_rotate.h"
-
-# define SPEED_MAX 100
+# include "types/t_texture.h"
 
 // # define WIN_WIDTH 640
 // # define WIN_HEIGHT 480
 
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
+
+# define UPDATE_DELAY 10000 //
 
 struct	s_player
 {
@@ -54,6 +55,7 @@ struct	s_engine
 	struct s_player	player;
 	struct s_map	map;
 	struct s_window	window;
+	uint8_t			***textures[4];
 };
 
 typedef struct s_engine	t_engine;

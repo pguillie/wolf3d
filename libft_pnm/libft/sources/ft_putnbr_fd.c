@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine_stop.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 20:53:08 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/22 11:46:30 by pguillie         ###   ########.fr       */
+/*   Created: 2018/11/03 10:28:35 by pguillie          #+#    #+#             */
+/*   Updated: 2018/11/03 11:00:35 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "libft.h"
 
-void	engine_stop(t_engine data)
+int		ft_putnbr_fd(int nbr, int fd)
 {
-	SDL_DestroyRenderer(data.window.renderer);
-	SDL_DestroyWindow(data.window.ptr);
-	SDL_Quit();
-	delete_data(data);
+	char	c;
+
+	if (nbr > 9)
+		if (ft_putnbr_fd(nbr / 10, fd) < 0)
+			return (-1);
+	c = nbr % 10 + '0';
+	return (write(fd, &c, 1));
 }

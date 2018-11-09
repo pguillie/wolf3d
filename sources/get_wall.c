@@ -6,26 +6,32 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/10/24 15:51:27 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/09 23:47:50 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static enum e_wtype	get_wall_type(struct s_map m, int x, int y)
+static enum e_texture	get_wall_texture(struct s_map m, int x, int y)
 {
 	char	c;
 
 	if (x < 0 || y < 0 || !(x < m.w) || !(y < m.h))
-		return (WDEFAULT);
+		return (T_DFLT);
 	c = m.layout[y][x];
-	if (c == 'w')
-		return (WWOOD);
+	if (c == 'b')
+		return (T_BRICKS);
+	else if (c == 'm')
+		return (T_METAL);
+	else if (c == 's')
+		return (T_STONE);
+	else if (c == 'w')
+		return (T_WOOD);
 	else
-		return (WDEFAULT);
+		return (T_DFLT);
 }
 
-static int			get_wall_x(struct s_player p, struct s_map m, t_wall *w)
+static int				get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		x;
 	int		dx;
@@ -55,11 +61,12 @@ static int			get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 		y += dx * tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = get_wall_type(m, (dx > 0 ? x : x - 1), (int)y);
+	w->texture = get_wall_texture(m, (dx > 0 ? x : x - 1), (int)y);
+	w->col = TEXTURE_SIZE * (y > (int)y ? y - (int)y : (int)y - y);
 	return (1);
 }
 
-static int			get_wall_y(struct s_player p, struct s_map m, t_wall *w)
+static int				get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 {
 	int		y;
 	int		dy;
@@ -89,11 +96,12 @@ static int			get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 		x += dy / tan(a);
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
-	w->type = get_wall_type(m, (int)x, (dy > 0 ? y : y - 1));
+	w->texture = get_wall_texture(m, (int)x, (dy > 0 ? y : y - 1));
+	w->col = TEXTURE_SIZE * (x > (int)x ? x - (int)x : (int)x - x);
 	return (1);
 }
 
-float				get_wall(t_engine d, t_wall *w)
+float					get_wall(t_engine d, t_wall *w)
 {
 	t_wall	wx;
 	t_wall	wy;
