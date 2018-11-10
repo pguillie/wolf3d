@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/09 23:29:34 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/10 16:51:50 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ HEADERS = $(addprefix $(INCDIR), \
 	types/t_error.h \
 	types/t_move.h \
 	types/t_rotate.h \
+	types/t_texture.h \
 	types/t_wall.h \
 )
 
