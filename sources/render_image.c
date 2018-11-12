@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/10 16:40:32 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 10:34:26 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,45 +66,31 @@ static void	render_column(t_wall wall, struct s_window win, int col,
 		SDL_RenderDrawPoints(win.renderer, pts, win.h - height - margin);
 	}
 }
-// {
-// 	SDL_Point	pts[win.h];
-// 	int			i;
-// 	int			j;
-// 	int			h;
-// 	int			k;
 
-// 	i = 0;
-// 	while (i < win.h)
-// 	{
-// 		pts[i].x = col;
-// 		pts[i].y = i;
-// 		i++;
-// 	}
-// 	h = win.h / wall.dist;
-// 	i = (wall.dist > 1 ? win.h / 2 - h / 2 : 0);
-// 	j = (wall.dist > 1 ? win.h / 2 + h / 2 : win.h);
-// 	SDL_SetRenderDrawColor(win.renderer, 42, 42, 42, 255);
-// 	SDL_RenderDrawPoints(win.renderer, pts, i);
-// 	//
-// 	// SDL_SetRenderDrawColor(win.renderer, 200, 0, 0, 255);
-// 	// SDL_RenderDrawPoints(win.renderer, pts + i, j - i);
-// 	k = 0;
-// 	while (k < h)
-// 	{
-// 		// (void)texture;
-// 		SDL_SetRenderDrawColor(win.renderer,
-// 			texture[k * 16 / h][wall.col][0],
-// 			texture[k * 16 / h][wall.col][1],
-// 			texture[k * 16 / h][wall.col][2],
-// 			255
-// 		);
-// 		SDL_RenderDrawPoint(win.renderer, col, i + k);
-// 		k++;
-// 	}
-// 	//
-// 	SDL_SetRenderDrawColor(win.renderer, 142, 142, 142, 255);
-// 	SDL_RenderDrawPoints(win.renderer, pts + j, win.h - j);
-// }
+static void	render_column_col(t_wall wall, struct s_window win, int col)
+{
+	SDL_Point	pts[win.h];
+	int			i;
+	int			j;
+	int			h;
+
+	i = 0;
+	while (i < win.h)
+	{
+		pts[i].x = col;
+		pts[i].y = i;
+		i++;
+	}
+	h = win.h / wall.dist;
+	i = (wall.dist > 1 ? win.h / 2 - h / 2 : 0);
+	j = (wall.dist > 1 ? win.h / 2 + h / 2 : win.h);
+	SDL_SetRenderDrawColor(win.renderer, 42, 42, 42, 255);
+	SDL_RenderDrawPoints(win.renderer, pts, i);
+	SDL_SetRenderDrawColor(win.renderer, 200, 0, 0, 255);
+	SDL_RenderDrawPoints(win.renderer, pts + i, j - i);
+	SDL_SetRenderDrawColor(win.renderer, 142, 142, 142, 255);
+	SDL_RenderDrawPoints(win.renderer, pts + j, win.h - j);
+}
 
 void		render_image(t_engine data)
 {
@@ -131,7 +117,10 @@ void		render_image(t_engine data)
 		// a = clock();
 		if (w.texture == T_DFLT)
 			w.texture = (enum e_texture)w.dir;
-		render_column(w, data.window, px, data.textures[w.texture]);
+		if (data.textures[w.texture])
+			render_column(w, data.window, px, data.textures[w.texture]);
+		else
+			render_column_col(w, data.window, px);
 		// printf("rend: %.2f\n", (float)(clock() - a));
 		px++;
 		data.player.dir -= angle;

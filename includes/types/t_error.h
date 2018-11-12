@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 19:00:55 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 19:25:54 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ enum	e_error
 	ENOMEM,
 	ESDLINIT,
 	ESDLWINDOW,
-	ESDLRENDERER
+	ESDLRENDERER,
+	ELOADTEXTURE
 };
 
 typedef enum e_error	t_error;

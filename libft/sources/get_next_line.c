@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 19:32:32 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/26 12:33:20 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 19:18:50 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ static char	*ft_strnapp(char **str, char *to_add, size_t n)
 	return (res);
 }
 
+static int	get_next_line_return(char **line, char **s, char *nl)
+{
+	if (nl != NULL)
+	{
+		*line = ft_strndup(*s, (size_t)nl - (size_t)*s);
+		ft_memmove(*s, nl + 1, ft_strlen(nl));
+		return (1);
+	}
+	if (*s && (*s)[0])
+	{
+		*line = ft_strdup(*s);
+		free(*s);
+		*s = NULL;
+		return (1);
+	}
+	return (0);
+}
+
 int			get_next_line(int fd, char **line)
 {
 	static char	*s;
@@ -45,18 +63,8 @@ int			get_next_line(int fd, char **line)
 	{
 		ft_memset(buff, 0, BUFF_SIZE);
 		if ((c = read(fd, buff, BUFF_SIZE)))
-		{
 			if (ft_strnapp(&s, buff, c) == NULL)
 				return (-1);
-		}
 	}
-	if (nl != NULL)
-	{
-		*line = ft_strndup(s, (size_t)nl - (size_t)s);
-		ft_memmove(s, nl + 1, ft_strlen(nl));
-		return (1);
-	}
-	*line = ft_strdup(s);
-	free(s);
-	return (0);
+	return (get_next_line_return(line, &s, nl));
 }

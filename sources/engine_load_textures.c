@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 20:34:23 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 23:24:46 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 19:32:40 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,8 @@ int			engine_load_textures(t_engine *data)
 	{
 		data->textures[i] = load_texture(get_texture_file(i));
 		if (data->textures[i] < 0)
-			ret = 1;
+			ret = ELOADTEXTURE;
 		i++;
 	}
-	// for (int h = 0; h < 16; h++)
-	// {
-	// 	for (int w = 0; w < 16; w++)
-	// 	{
-	// 		for (int d = 0; d < 3; d++)
-	// 			printf ("%d ", data->textures[0][h][w][d]);
-	// 		printf("\n");
-	// 	}
-	// }
 	return (ret);
 }
-
-//unload on stop

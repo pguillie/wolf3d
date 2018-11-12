@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 20:25:31 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 23:30:23 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 19:26:14 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_error		engine_start(t_engine *data, const char *data_file)
 		return (ESDLWINDOW);
 	if (engine_renderer(data) < 0)
 		return (ESDLRENDERER);
-	engine_load_textures(data);
+	if (engine_load_textures(data))
+		ft_perror(ELOADTEXTURE);
 	return (ENONE);
 }

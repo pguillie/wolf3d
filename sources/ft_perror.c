@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 19:55:38 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 19:28:04 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 19:28:52 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ int		ft_perror(t_error no)
 {
 	const char	*err[] = {
 		"unknown error",
-		"Usage: wolf3d data_file",
-		"Unable to open data_file",
-		"Unable to read data_file",
-		"Unable to set player position",
-		"Error: no space left",
-		"Unable to initialize SDL",
-		"Unable to create window",
-		"Unable to create renderder"
+		"Usage: wolf3d <data_file>",
+		"Error: Unable to open data_file",
+		"Error: Unable to read data_file",
+		"Error: Unable to set player position",
+		"Error: No space left",
+		"Error: Unable to initialize SDL",
+		"Error: Unable to create window",
+		"Error: Unable to create renderder"
+		"Warning: Some textures haven't been properly loaded"
 	};
 
 	write(2, err[no], ft_strlen(err[no]));
