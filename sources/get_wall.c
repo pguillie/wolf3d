@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/11/09 23:47:50 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 22:25:14 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int				get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
 	w->texture = get_wall_texture(m, (dx > 0 ? x : x - 1), (int)y);
-	w->col = TEXTURE_SIZE * (y > (int)y ? y - (int)y : (int)y - y);
+	w->col = (y > (int)y ? y - (int)y : (int)y - y);
 	return (1);
 }
 
@@ -97,7 +97,7 @@ static int				get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 	}
 	w->dist = sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
 	w->texture = get_wall_texture(m, (int)x, (dy > 0 ? y : y - 1));
-	w->col = TEXTURE_SIZE * (x > (int)x ? x - (int)x : (int)x - x);
+	w->col = (x > (int)x ? x - (int)x : (int)x - x);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 23:29:46 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 21:57:14 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		engine_stop(t_engine engine_data);
 int			engine_load_textures(t_engine *data);
 
 t_error		read_data(const char *file, t_engine *data);
-uint8_t		***load_texture(char *file);
+uint8_t		*load_texture(char *file);
 
 void		delete_data(t_engine data);
 void		delete_textures(t_engine data);
@@ -50,6 +50,7 @@ void		game_move(t_engine *data, float angle);
 void		game_rotate(t_engine *data, int sign);
 
 void		render_image(t_engine data);
+void		render_column(t_wall wall, struct s_window win, int c, uint8_t *t);
 float		get_wall(t_engine data, t_wall *w);
 
 int			ft_perror(t_error no);

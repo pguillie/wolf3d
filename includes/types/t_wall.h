@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:09:02 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 23:34:23 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 22:29:02 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ enum	e_wdir
 struct	s_wall
 {
 	float			dist;
+	float			col;
 	enum e_wdir		dir;
 	enum e_texture	texture;
-	int				col;
 };
 
 typedef struct s_wall	t_wall;

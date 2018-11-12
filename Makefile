@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/10 16:51:50 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/12 22:26:45 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SOURCES = $(addprefix $(SRCDIR), \
 	load_texture.c \
 	main.c \
 	read_data.c \
+	render_column.c \
 	render_image.c \
 )
 

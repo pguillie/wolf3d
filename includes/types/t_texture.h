@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 20:08:02 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/10 16:55:30 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 23:40:04 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 # include <stdint.h>
 
-# define TEXTURE_SIZE 16
-
 # define NB_TEXTURE 4
 
-# define T_BRICKS_FILE "textures/bricks.pnm"
-# define T_METAL_FILE "textures/metal.pnm"
-# define T_STONE_FILE "textures/stone.pnm"
-# define T_WOOD_FILE "textures/wood.pnm"
+# define T_BRICKS_FILE "textures/bricks_l.pnm"
+# define T_METAL_FILE "textures/metal_l.pnm"
+# define T_STONE_FILE "textures/stone_l.pnm"
+# define T_WOOD_FILE "textures/wood_l.pnm"
 
 enum	e_texture
 {

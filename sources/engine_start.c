@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 20:25:31 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 19:26:14 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/12 23:44:59 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	engine_window(t_engine *data)
 		data->window.w,
 		data->window.h,
 		SDL_WINDOW_RESIZABLE
-	);
+);
 	if (data->window.ptr == NULL)
 	{
 		SDL_Quit();
