@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 22:31:03 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:27:59 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	render_column_color(t_wall wall, struct s_window win, int col)
 		pts[i].y = i;
 		i++;
 	}
-	i = (wall.dist > 1 ? win.h / 2 - (win.h / wall.dist) / 2 : 0);
+	i = (win.calc_h / wall.dist < win.h ?
+		(win.h - (win.calc_h / wall.dist)) / 2 : 0);
 	SDL_SetRenderDrawColor(win.renderer, 71, 163, 226, 255);
 	SDL_RenderDrawPoints(win.renderer, pts, i);
 	SDL_SetRenderDrawColor(win.renderer, 200, 0, 0, 255);

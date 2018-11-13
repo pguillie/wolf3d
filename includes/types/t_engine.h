@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 23:40:21 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:26:49 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include "types/t_rotate.h"
 # include "types/t_texture.h"
 
-// # define WIN_WIDTH 640
-// # define WIN_HEIGHT 480
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+// # define WIN_WIDTH 1000
+// # define WIN_HEIGHT 1000
+
+# define FOV_MIN 40
+# define FOV_MAX 100
 
 # define UPDATE_DELAY 10000 //
 
@@ -47,6 +50,7 @@ struct	s_window
 	SDL_Renderer	*renderer;
 	int				w;
 	int				h;
+	int				calc_h;
 	float			fov;
 };
 

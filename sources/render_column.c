@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 21:55:08 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 23:43:44 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:26:12 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	render_column(t_wall wall, struct s_window win, int col, uint8_t *t)
 	int			irow;
 	int			icol;
 
-	height = win.h / wall.dist;
+	height = win.calc_h / wall.dist;
 	margin = (win.h - height) / 2;
 	icol = wall.col * ((int *)t)[0];
 	if (margin < 0)
