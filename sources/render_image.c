@@ -6,11 +6,37 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/13 16:27:59 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/15 12:39:21 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+//
+static void	render_sky(t_wall wall, struct s_window win, int col, uint8_t *sky, float dir)
+{
+	int	i;
+	int	irow;
+	int	icol;
+	int	h;
+
+	h = (win.calc_h / wall.dist < win.h ?
+		(win.h - (win.calc_h / wall.dist)) / 2 : 0);
+	dir = fmodf(dir + 2 * M_PI, 2 * M_PI);
+	icol = dir * ((int *)sky)[0] / (2 * M_PI);
+	i = win.calc_h - win.h;
+	while (i < h)
+	{
+		irow = i * ((int *)sky)[1] * 2 / win.calc_h;
+		SDL_SetRenderDrawColor(win.renderer,
+			sky[2 * sizeof(int) + 3 * (((int *)sky)[0] * irow + icol) + 0],
+			sky[2 * sizeof(int) + 3 * (((int *)sky)[0] * irow + icol) + 1],
+			sky[2 * sizeof(int) + 3 * (((int *)sky)[0] * irow + icol) + 2],
+			255);
+		SDL_RenderDrawPoint(win.renderer, col, i);
+		i++;
+	}
+}
 
 static void	render_column_color(t_wall wall, struct s_window win, int col)
 {
@@ -51,6 +77,9 @@ void		render_image(t_engine data)
 		w.dist *= cos(dir - data.player.dir);
 		if (w.texture == T_DFLT)
 			w.texture = (enum e_texture)w.dir;
+		// skybox
+		render_sky(w, data.window, px, data.sky, data.player.dir);
+		//
 		if (data.textures[w.texture])
 			render_column(w, data.window, px, data.textures[w.texture]);
 		else

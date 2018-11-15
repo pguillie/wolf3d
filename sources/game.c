@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:28:33 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/13 15:55:35 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/14 19:57:43 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		game(t_engine data)
 	while (loop)
 	{
 		game_update_fov(&(data.window));
-		printf("fov: %f rad = %f C\n", data.window.fov, data.window.fov * 180 / M_PI);
+		// printf("fov: %f rad = %f C\n", data.window.fov, data.window.fov * 180 / M_PI);
 		// cur = clock();
 		// printf("fps: %.2f\n", (float)CLOCKS_PER_SEC / (cur - last));
 		// printf("delay: %lu cur: %lu last: %lu\n", delay, cur, last);

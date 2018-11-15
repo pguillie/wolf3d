@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/12 22:26:45 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/14 20:10:32 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := wolf3d
 
 CC := gcc
 WFLAGS := -Wall -Werror -Wextra
-CFLAGS = $(WFLAGS)
+CFLAGS = $(WFLAGS) -fsanitize=address
 
 LMATH := -lm
 # SDL = SDL2/sources/SDL2.a?

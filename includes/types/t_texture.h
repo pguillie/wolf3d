@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 20:08:02 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 23:40:04 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/14 20:34:27 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ enum	e_texture
 	T_METAL,
 	T_STONE,
 	T_WOOD,
-	T_DFLT,
+	T_DFLT
 };
+
+# define T_SKY_FILE "textures/sky_m.pnm"
 
 #endif

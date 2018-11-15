@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 11:17:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 19:01:41 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/11 18:24:27 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,8 @@ static uint8_t	*ft_pnm_write_two(uint16_t **row, int width, int depth)
 static int		ft_pnm_write_row_raw(t_pnm data, uint16_t **row)
 {
 	uint8_t	*buf;
-	int		i;
 	int		len;
 
-	i = 0;
 	if (data.bytes_per_sample == 1)
 	{
 		if ((buf = ft_pnm_write_one(row, data.width, data.depth)) == NULL)

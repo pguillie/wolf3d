@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 20:34:23 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 19:32:40 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/14 19:10:58 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int			engine_load_textures(t_engine *data)
 	while (i < NB_TEXTURE)
 	{
 		data->textures[i] = load_texture(get_texture_file(i));
-		if (data->textures[i] < 0)
+		if (data->textures[i] == NULL)
 			ret = ELOADTEXTURE;
 		i++;
 	}
+	if ((data->sky = load_texture(T_SKY_FILE)) == NULL)
+		ret = ELOADTEXTURE;
 	return (ret);
 }

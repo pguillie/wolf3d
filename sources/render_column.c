@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 21:55:08 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/13 16:26:12 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/14 19:48:23 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ void	render_column(t_wall wall, struct s_window win, int col, uint8_t *t)
 	}
 	else
 	{
-		i = 0;
-		while (i < margin)
-		{
-			pts[i].y = i;
-			pts[i++].x = col;
-		}
-		SDL_SetRenderDrawColor(win.renderer, 71, 163, 226, 255);
-		SDL_RenderDrawPoints(win.renderer, pts, margin);
+		// i = 0;
+		// while (i < margin)
+		// {
+		// 	pts[i].y = i;
+		// 	pts[i++].x = col;
+		// }
+		// SDL_SetRenderDrawColor(win.renderer, 71, 163, 226, 255);
+		// SDL_RenderDrawPoints(win.renderer, pts, margin);
+		i = margin;
 		while (i < height + margin)
 		{
 			irow = (i - margin) * ((int *)t)[1] / height;
