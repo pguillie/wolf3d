@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 19:55:38 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/14 19:00:09 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/15 18:31:48 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_perror(t_error no)
 		"Error: Unable to initialize SDL",
 		"Error: Unable to create window",
 		"Error: Unable to create renderder",
+		"Error: Unable to create surface",
 		"Warning: Some textures haven't been properly loaded"
 	};
 

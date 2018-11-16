@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 20:53:08 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/09 23:29:40 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/15 19:47:36 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	engine_stop(t_engine data)
 {
+	free(data.window.surface->userdata);
+	SDL_FreeSurface(data.window.surface);
 	SDL_DestroyRenderer(data.window.renderer);
 	SDL_DestroyWindow(data.window.ptr);
 	SDL_Quit();

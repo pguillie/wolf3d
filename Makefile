@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/14 20:10:32 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/16 01:08:56 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,9 @@ SOURCES = $(addprefix $(SRCDIR), \
 	main.c \
 	read_data.c \
 	render_column.c \
+	render_floor.c \
 	render_image.c \
+	render_sky.c \
 )
 
 OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)

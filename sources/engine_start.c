@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 20:25:31 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 23:44:59 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/16 00:13:52 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ static int	engine_window(t_engine *data)
 		delete_data(*data);
 		return (-1);
 	}
+	data->window.fov = 2 * atan(0.5) * data->window.w / data->window.h;
+	if (data->window.fov * 180 / M_PI > FOV_MAX)
+	{
+		data->window.fov = FOV_MAX * M_PI / 180;
+		data->window.real_h = 2 * atan(0.5) * data->window.w / data->window.fov;
+	}
+	else
+		data->window.real_h = data->window.h;
 	return (0);
 }
 
@@ -56,6 +64,27 @@ static int	engine_renderer(t_engine *data)
 	return (0);
 }
 
+static int	engine_surface(t_engine *data)
+{
+	SDL_Surface	*s;
+
+	s = SDL_CreateRGBSurface(0, data->window.w, data->window.h, 32, 0, 0, 0, 0);
+	if (s)
+		s->userdata = malloc(s->h * s->pitch);
+	if (s == NULL || s->userdata == NULL)
+	{
+		if (s)
+			SDL_FreeSurface(s);
+		SDL_DestroyRenderer(data->window.renderer);
+		SDL_DestroyWindow(data->window.ptr);
+		SDL_Quit();
+		delete_data(*data);
+		return (-1);
+	}
+	data->window.surface = s;
+	return (0);
+}
+
 t_error		engine_start(t_engine *data, const char *data_file)
 {
 	t_error	err;
@@ -68,6 +97,8 @@ t_error		engine_start(t_engine *data, const char *data_file)
 		return (ESDLWINDOW);
 	if (engine_renderer(data) < 0)
 		return (ESDLRENDERER);
+	if (engine_surface(data) < 0)
+		return (ESDLSURFACE);
 	if (engine_load_textures(data))
 		ft_perror(ELOADTEXTURE);
 	return (ENONE);

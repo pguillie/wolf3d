@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 11:39:15 by paul              #+#    #+#             */
-/*   Updated: 2018/11/13 14:52:11 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/16 00:14:20 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static enum e_texture	get_wall_texture(struct s_map m, int x, int y)
 		return (T_DFLT);
 }
 
-static int				get_wall_x(struct s_player p, struct s_map m, t_wall *w)
+static int				get_wall_x(struct s_player p, struct s_map m, t_wall *w,
+	float a)
 {
 	int		x;
 	int		dx;
 	float	y;
-	float	a;
 
-	if (p.dir == (float)M_PI_2 || p.dir == -(float)M_PI_2)
+	if (a == (float)M_PI_2 || a == -(float)M_PI_2)
 		return (0);
-	a = -p.dir;
+	a = -a;
 	x = (a > -M_PI_2 && a < M_PI_2 ? (int)ceilf(p.x) : (int)floorf(p.x));
 	dx = (a > -M_PI_2 && a < M_PI_2 ? 1 : -1);
 	w->dir = (a > -M_PI_2 && a < M_PI_2 ? WEST : EAST);
@@ -57,16 +57,16 @@ static int				get_wall_x(struct s_player p, struct s_map m, t_wall *w)
 	return (1);
 }
 
-static int				get_wall_y(struct s_player p, struct s_map m, t_wall *w)
+static int				get_wall_y(struct s_player p, struct s_map m, t_wall *w,
+	float a)
 {
 	int		y;
 	int		dy;
 	float	x;
-	float	a;
 
-	if (p.dir == 0 || p.dir == (float)M_PI)
+	if (a == 0 || a == (float)M_PI)
 		return (0);
-	a = -p.dir;
+	a = -a;
 	y = (a > 0 ? (int)ceilf(p.y) : (int)floorf(p.y));
 	dy = (a > 0 ? 1 : -1);
 	w->dir = (a > 0 ? NORTH : SOUTH);
@@ -83,21 +83,21 @@ static int				get_wall_y(struct s_player p, struct s_map m, t_wall *w)
 	return (1);
 }
 
-float					get_wall(t_engine d, t_wall *w)
+float					get_wall(t_engine d, t_wall *w, float angle)
 {
 	t_wall	wx;
 	t_wall	wy;
 	int		success_x;
 	int		success_y;
 
-	if (d.player.dir < 0)
-		d.player.dir = fmodf(d.player.dir - (float)M_PI, 2 * (float)M_PI)
+	if (angle < 0)
+		angle = fmodf(angle - (float)M_PI, 2 * (float)M_PI)
 			+ M_PI;
 	else
-		d.player.dir = fmodf(d.player.dir + (float)M_PI, 2 * (float)M_PI)
+		angle = fmodf(angle + (float)M_PI, 2 * (float)M_PI)
 			- M_PI;
-	success_x = get_wall_x(d.player, d.map, &wx);
-	success_y = get_wall_y(d.player, d.map, &wy);
+	success_x = get_wall_x(d.player, d.map, &wx, angle);
+	success_y = get_wall_y(d.player, d.map, &wy, angle);
 	if (!success_x)
 		*w = wy;
 	else if (!success_y)

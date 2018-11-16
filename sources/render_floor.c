@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   render_floor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/15 18:40:09 by pguillie         ###   ########.fr       */
+/*   Created: 2018/11/16 00:41:52 by pguillie          #+#    #+#             */
+/*   Updated: 2018/11/16 01:09:33 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "wolf3d.h"
 
-enum	e_error
+void	render_floor(t_engine data, int begin, int column)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	EFREAD,
-	ESETPOS,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER,
-	ESDLSURFACE,
-	ELOADTEXTURE
-};
-
-typedef enum e_error	t_error;
-
-#endif
+	while (begin < data.window.h)
+	{
+		*(Uint32 *)(data.window.surface->userdata
+			+ begin * data.window.surface->pitch
+			+ column * data.window.surface->format->BytesPerPixel) =
+				SDL_MapRGB(data.window.surface->format,
+				42, 42, 42);
+		begin++;
+	}
+}

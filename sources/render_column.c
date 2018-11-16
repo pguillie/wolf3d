@@ -6,67 +6,30 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 21:55:08 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/14 19:48:23 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/16 01:11:14 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-// opti + mise au propre + norme
-
-void	render_column(t_wall wall, struct s_window win, int col, uint8_t *t)
+void	render_column(t_engine data, int column)
 {
-	SDL_Point	pts[win.h / 2];
-	int			height;
-	int			margin;
-	int			i;
-	int			irow;
-	int			icol;
+	t_wall	wall;
+	int		height;
+	int		margin;
+	float	angle;
 
-	height = win.calc_h / wall.dist;
-	margin = (win.h - height) / 2;
-	icol = wall.col * ((int *)t)[0];
-	if (margin < 0)
+	angle = data.player.dir + data.window.fov / 2
+		- column * data.window.fov / data.window.w;
+	angle = fmodf(angle + 2 * M_PI, 2 * M_PI);
+	get_wall(data, &wall, angle);
+	wall.dist *= cos(data.player.dir - angle);
+	height = data.window.real_h / wall.dist;
+	margin = (data.window.h - height) / 2;
+	// render_wall(data, wall, margin, height, column, angle);
+	if (margin > 0)
 	{
-		i = 0;
-		while (i < win.h)
-		{
-			irow = (i - margin) * ((int *)t)[1] / height;
-			SDL_SetRenderDrawColor(win.renderer,
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 0],
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 1],
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 2],
-				255);
-			SDL_RenderDrawPoint(win.renderer, col, i++);
-		}
-	}
-	else
-	{
-		// i = 0;
-		// while (i < margin)
-		// {
-		// 	pts[i].y = i;
-		// 	pts[i++].x = col;
-		// }
-		// SDL_SetRenderDrawColor(win.renderer, 71, 163, 226, 255);
-		// SDL_RenderDrawPoints(win.renderer, pts, margin);
-		i = margin;
-		while (i < height + margin)
-		{
-			irow = (i - margin) * ((int *)t)[1] / height;
-			SDL_SetRenderDrawColor(win.renderer,
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 0],
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 1],
-				t[2 * sizeof(int) + 3 * (((int *)t)[0] * irow + icol) + 2],
-				255);
-			SDL_RenderDrawPoint(win.renderer, col, i++);
-		}
-		while (i < win.h)
-		{
-			pts[i - margin - height].y = i;
-			pts[i++ - margin - height].x = col;
-		}
-		SDL_SetRenderDrawColor(win.renderer, 142, 142, 142, 255);
-		SDL_RenderDrawPoints(win.renderer, pts, win.h - height - margin);
+		render_sky(data, margin, column, angle);
+		render_floor(data, margin + height, column);
 	}
 }

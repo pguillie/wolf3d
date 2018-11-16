@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_error.h                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 19:25:45 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/15 18:40:09 by pguillie         ###   ########.fr       */
+/*   Created: 2018/11/16 01:05:52 by pguillie          #+#    #+#             */
+/*   Updated: 2018/11/16 01:07:23 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_ERROR_H
-# define T_ERROR_H
+#include "libft.h"
 
-enum	e_error
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	ENONE,
-	EUSAGE,
-	EFOPEN,
-	EFREAD,
-	ESETPOS,
-	ENOMEM,
-	ESDLINIT,
-	ESDLWINDOW,
-	ESDLRENDERER,
-	ESDLSURFACE,
-	ELOADTEXTURE
-};
+	unsigned char	*d;
+	unsigned char	*s;
 
-typedef enum e_error	t_error;
-
-#endif
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	while (n--)
+		d[n] = s[n];
+	return (dest);
+}

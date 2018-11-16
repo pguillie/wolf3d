@@ -6,23 +6,23 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:28:33 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/14 19:57:43 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/15 19:59:59 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	game_update_fov(struct s_window *win)
-{
-	win->fov = 2 * atan(0.5) * win->w / win->h;
-	if (win->fov * 180 / M_PI > FOV_MAX)
-	{
-		win->fov = FOV_MAX * M_PI / 180;
-		win->calc_h = 2 * atan(0.5) * win->w / win->fov;
-	}
-	else
-		win->calc_h = win->h;
-}
+// static void	game_update_fov(struct s_window *win)
+// {
+// 	win->fov = 2 * atan(0.5) * win->w / win->h;
+// 	if (win->fov * 180 / M_PI > FOV_MAX)
+// 	{
+// 		win->fov = FOV_MAX * M_PI / 180;
+// 		win->real_h = 2 * atan(0.5) * win->w / win->fov;
+// 	}
+// 	else
+// 		win->real_h = win->h;
+// }
 
 void		game(t_engine data)
 {
@@ -34,9 +34,9 @@ void		game(t_engine data)
 	loop = 1;
 	// delay = 0;
 	// last = clock();
-	while (loop)
+	while (loop == 1)
 	{
-		game_update_fov(&(data.window));
+		// game_update_fov(&(data.window));
 		// printf("fov: %f rad = %f C\n", data.window.fov, data.window.fov * 180 / M_PI);
 		// cur = clock();
 		// printf("fps: %.2f\n", (float)CLOCKS_PER_SEC / (cur - last));
@@ -50,4 +50,6 @@ void		game(t_engine data)
 		render_image(data);
 		// last = cur;
 	}
+	if (loop < 0)
+		ft_perror(ESDLSURFACE);
 }
