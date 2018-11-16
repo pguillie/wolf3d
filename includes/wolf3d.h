@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 01:05:35 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/16 18:09:19 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		game_rotate(t_engine *data, int sign);
 int			render_image(t_engine data);
 void		render_column(t_engine data, int colum);
 void		render_sky(t_engine data, int margin, int column, float angle);
+void		render_wall(t_engine data, t_wall wall, int *limits, int column);
 void		render_floor(t_engine data, int begin, int column);
 float		get_wall(t_engine data, t_wall *w, float angle);
 
