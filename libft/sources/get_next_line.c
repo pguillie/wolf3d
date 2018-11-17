@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 19:32:32 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/12 19:18:50 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 17:02:20 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static char	*ft_strnapp(char **str, char *to_add, size_t n)
 		res[len + n] = to_add[n];
 	while (len--)
 		res[len] = (*str)[len];
-	if (*str)
-		free(*str);
+	free(*str);
 	*str = res;
 	return (res);
 }
@@ -35,13 +34,15 @@ static int	get_next_line_return(char **line, char **s, char *nl)
 {
 	if (nl != NULL)
 	{
-		*line = ft_strndup(*s, (size_t)nl - (size_t)*s);
+		if ((*line = ft_strndup(*s, (size_t)nl - (size_t)*s)) == NULL)
+			return (-1);
 		ft_memmove(*s, nl + 1, ft_strlen(nl));
 		return (1);
 	}
 	if (*s && (*s)[0])
 	{
-		*line = ft_strdup(*s);
+		if ((*line = ft_strdup(*s)) == NULL)
+			return (-1);
 		free(*s);
 		*s = NULL;
 		return (1);
@@ -54,7 +55,7 @@ int			get_next_line(int fd, char **line)
 	static char	*s;
 	char		buff[BUFF_SIZE];
 	char		*nl;
-	size_t		c;
+	ssize_t		c;
 
 	if (!line || fd < 0)
 		return (-1);
@@ -62,9 +63,11 @@ int			get_next_line(int fd, char **line)
 	while ((nl = ft_strchr(s, '\n')) == NULL && c == BUFF_SIZE)
 	{
 		ft_memset(buff, 0, BUFF_SIZE);
-		if ((c = read(fd, buff, BUFF_SIZE)))
+		if ((c = read(fd, buff, BUFF_SIZE)) > 0)
 			if (ft_strnapp(&s, buff, c) == NULL)
 				return (-1);
 	}
+	if (c < 0)
+		return (-1);
 	return (get_next_line_return(line, &s, nl));
 }

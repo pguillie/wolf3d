@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/16 22:32:08 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/17 18:23:07 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := wolf3d
 
 CC := gcc
 WFLAGS := -Wall -Werror -Wextra
-CFLAGS = $(WFLAGS) -fsanitize=address
+CFLAGS = $(WFLAGS) #-fsanitize=address
 
 LMATH := -lm
 # SDL = SDL2/sources/SDL2.a?
@@ -69,6 +69,7 @@ SOURCES = $(addprefix $(SRCDIR), \
 	render_image.c \
 	render_sky.c \
 	render_wall.c \
+	render_wall_pixel.c \
 )
 
 OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)

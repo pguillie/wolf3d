@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:37:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 00:14:09 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 15:37:22 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	engine_resize_window(t_engine *data, int w, int h)
 	if (data->window.surface)
 		data->window.surface->userdata = malloc(
 			data->window.surface->h * data->window.surface->pitch);
-	if (data->window.surface == NULL)
+	else
 		return (-1);
 	if (data->window.surface->userdata == NULL)
 	{
@@ -89,13 +89,10 @@ int			game_event(t_engine *data)
 		}
 		else if (event.type == SDL_WINDOWEVENT)
 		{
-			if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED
-				|| event.window.event == SDL_WINDOWEVENT_RESIZED)
-			{
+			if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				if (engine_resize_window(data, event.window.data1,
 					event.window.data2))
 					return (-1);
-			}
 		}
 		else if (event.type == SDL_QUIT)
 			return (0);

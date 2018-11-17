@@ -6,16 +6,18 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 12:55:12 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 22:30:55 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 18:14:50 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	render_wall_color(struct s_window win, int wall_size[2], int column)
+static void	render_wall_color(struct s_window win, int wall_size[2], int column,
+	t_wall wall)
 {
-	int	i;
-	int	j;
+	Uint8	c[3];
+	int		i;
+	int		j;
 
 	if (wall_size[1] < win.h)
 	{
@@ -29,27 +31,27 @@ static void	render_wall_color(struct s_window win, int wall_size[2], int column)
 	}
 	while (i < j)
 	{
+		ft_memset(c, 255, 3);
 		*(Uint32 *)(win.surface->userdata
 			+ i * win.surface->pitch
 			+ column * win.surface->format->BytesPerPixel) =
-				SDL_MapRGB(win.surface->format, 142, 142, 142);
+				render_wall_pixel(c, win.surface->format, wall);
 		i++;
 	}
 }
 
-static void	render_wall_pixel(SDL_Surface *surface, int couple[3][2],
-	uint8_t *texture)
+static void	render_wall_texture(SDL_Surface *surface, int couple[3][2],
+	uint8_t *texture, t_wall wall)
 {
-	int	index;
+	Uint8	c[3];
+	int		index;
 
 	index = 2 * sizeof(int) + 3 * (couple[0][0] * couple[1][1] + couple[1][0]);
+	ft_memcpy(c, texture + index, 3);
 	*(Uint32 *)(surface->userdata
 		+ couple[2][0] * surface->pitch
 		+ couple[2][1] * surface->format->BytesPerPixel) =
-			SDL_MapRGB(surface->format,
-				texture[index],
-				texture[index + 1],
-				texture[index + 2]);
+			render_wall_pixel(c, surface->format, wall);
 }
 
 static void	render_wall_small(t_engine data, t_wall wall, int couple[3][2],
@@ -60,8 +62,8 @@ static void	render_wall_small(t_engine data, t_wall wall, int couple[3][2],
 	{
 		couple[1][1] = (couple[2][0] - limits[0])
 			* couple[0][1] / limits[1];
-		render_wall_pixel(
-				data.window.surface, couple, data.textures[wall.texture]);
+		render_wall_texture(
+				data.window.surface, couple, data.textures[wall.texture], wall);
 		couple[2][0]++;
 	}
 }
@@ -74,8 +76,8 @@ static void	render_wall_large(t_engine data, t_wall wall, int couple[3][2],
 	{
 		couple[1][1] = (couple[2][0] - limits[0] - 1)
 			* couple[0][1] / limits[1];
-		render_wall_pixel(
-				data.window.surface, couple, data.textures[wall.texture]);
+		render_wall_texture(
+				data.window.surface, couple, data.textures[wall.texture], wall);
 		couple[2][0]++;
 	}
 }
@@ -98,5 +100,5 @@ void		render_wall(t_engine data, t_wall wall, int *limits, int column)
 			render_wall_large(data, wall, couple, limits);
 	}
 	else
-		render_wall_color(data.window, limits, column);
+		render_wall_color(data.window, limits, column, wall);
 }

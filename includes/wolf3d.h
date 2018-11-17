@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 18:09:19 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 18:33:59 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ uint8_t		*load_texture(char *file);
 void		delete_data(t_engine data);
 void		delete_textures(t_engine data);
 
-void		game(t_engine data);
+void		game(t_engine *data);
 int			game_event(t_engine *data);
 void		game_update(t_engine *data);
 void		game_move(t_engine *data, float angle);
@@ -53,6 +53,7 @@ int			render_image(t_engine data);
 void		render_column(t_engine data, int colum);
 void		render_sky(t_engine data, int margin, int column, float angle);
 void		render_wall(t_engine data, t_wall wall, int *limits, int column);
+Uint32		render_wall_pixel(Uint8 c[3], SDL_PixelFormat *format, t_wall wall);
 void		render_floor(t_engine data, int begin, int column);
 float		get_wall(t_engine data, t_wall *w, float angle);
 

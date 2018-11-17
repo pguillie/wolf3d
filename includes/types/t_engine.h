@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/15 19:59:59 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 18:27:55 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define FOV_MIN 40
 # define FOV_MAX 100
 
-# define UPDATE_DELAY 10000 //
+# define UPDATE_DELAY 50000 //
 
 struct	s_player
 {
