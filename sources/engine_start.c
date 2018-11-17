@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 20:25:31 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 00:13:52 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 22:06:15 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_error		engine_start(t_engine *data, const char *data_file)
 		return (ESDLRENDERER);
 	if (engine_surface(data) < 0)
 		return (ESDLSURFACE);
+	data->quality = 1;
 	if (engine_load_textures(data))
 		ft_perror(ELOADTEXTURE);
 	return (ENONE);

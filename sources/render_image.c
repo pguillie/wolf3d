@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:50:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/16 01:05:19 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 22:58:56 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,33 @@ static int	render_surface(SDL_Renderer *renderer, SDL_Surface *surface)
 	return (0);
 }
 
+static void	*render_thread(void *thread)
+{
+	t_thread	*t;
+
+	t = (t_thread *)thread;
+	while (t->begin < t->end)
+		render_column(t->data, t->begin++);
+	return (NULL);
+}
+
 int			render_image(t_engine data)
 {
-	int	x;
+	t_thread	thread[THREAD_NB];
+	int			i;
 
-	x = 0;
-	while (x < data.window.w)
+	i = 0;
+	while (i < THREAD_NB)
 	{
-		render_column(data, x++);
+		thread[i].data = data;
+		thread[i].begin = i * data.window.w / THREAD_NB;
+		thread[i].end = (i + 1) * data.window.w / THREAD_NB;
+		if (pthread_create(&thread[i].id, NULL, render_thread, &thread[i]))
+			break ;
+		i++;
 	}
+	i = 0;
+	while (i < THREAD_NB)
+		pthread_join(thread[i++].id, NULL);
 	return (render_surface(data.window.renderer, data.window.surface));
 }

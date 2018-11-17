@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:37:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 15:37:22 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 22:08:13 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,29 @@ static int	engine_resize_window(t_engine *data, int w, int h)
 	return (0);
 }
 
+static void	game_event_key(SDL_Event event, t_engine *data)
+{
+	int	quality;
+
+	if (event.key.keysym.sym == SDLK_1)
+		quality = 1;
+	else if (event.key.keysym.sym == SDLK_2)
+		quality = 2;
+	else if (event.key.keysym.sym == SDLK_3)
+		quality = 3;
+	else
+	{
+		game_set_action(event, data);
+		return ;
+	}
+	if (quality != data->quality)
+	{
+		data->quality = quality;
+		delete_textures(*data);
+		engine_load_textures(data);
+	}
+}
+
 int			game_event(t_engine *data)
 {
 	SDL_Event	event;
@@ -79,7 +102,7 @@ int			game_event(t_engine *data)
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_KEYDOWN)
-			game_set_action(event, data);
+			game_event_key(event, data);
 		else if (event.type == SDL_KEYUP)
 		{
 			if (event.key.keysym.sym == SDLK_ESCAPE)

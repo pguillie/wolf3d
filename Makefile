@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/17 18:23:07 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/17 19:10:28 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ WFLAGS := -Wall -Werror -Wextra
 CFLAGS = $(WFLAGS) #-fsanitize=address
 
 LMATH := -lm
+LPTHREAD := -lpthread
 # SDL = SDL2/sources/SDL2.a?
 ifeq ($(shell uname), Darwin)
 	LSDL := /Library/Frameworks/SDL2.framework/SDL2
@@ -79,7 +80,7 @@ OBJECTS = $(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIBFT_PNM) $(OBJDIR) $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LMATH) $(LSDL) $(LFT) $(LFT_PNM)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LMATH) $(LPTHREAD) $(LSDL) $(LFT) $(LFT_PNM)
 
 $(LIBFT):
 	make -C $(dir $(LIBFT))

@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/16 01:08:15 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/17 20:17:27 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SOURCES = $(addprefix $(SRCDIR), \
 	ft_memcpy.c \
 	ft_memmove.c \
 	ft_memset.c \
+	ft_strcat.c \
 	ft_strchr.c \
+	ft_strcpy.c \
 	ft_strdel.c \
 	ft_strdup.c \
 	ft_strlen.c \

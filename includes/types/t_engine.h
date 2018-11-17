@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 17:08:36 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 18:27:55 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 22:53:50 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@
 # include "types/t_rotate.h"
 # include "types/t_texture.h"
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
-// # define WIN_WIDTH 1000
-// # define WIN_HEIGHT 1000
-
-# define FOV_MIN 40
 # define FOV_MAX 100
 
-# define UPDATE_DELAY 50000 //
+# define UPDATE_DELAY 100000
+
+# define THREAD_NB 16
 
 struct	s_player
 {
@@ -62,8 +60,19 @@ struct	s_engine
 	struct s_window	window;
 	uint8_t			*textures[NB_TEXTURE];
 	uint8_t			*sky;
+	int				quality;
 };
 
 typedef struct s_engine	t_engine;
+
+struct	s_thread
+{
+	pthread_t	id;
+	t_engine	data;
+	int			begin;
+	int			end;
+};
+
+typedef struct s_thread	t_thread;
 
 #endif

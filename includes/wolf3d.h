@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 18:33:59 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 19:10:44 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <SDL2/SDL.h>
 # include <fcntl.h>
+# include <pthread.h>
 
 # include "libft.h"
 # include "libft_pnm.h"
