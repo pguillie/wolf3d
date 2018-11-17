@@ -6,7 +6,7 @@
 #    By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/16 13:46:38 by pguillie          #+#    #+#              #
-#    Updated: 2018/11/17 19:10:28 by pguillie         ###   ########.fr        #
+#    Updated: 2018/11/17 23:58:44 by pguillie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,10 @@ NAME := wolf3d
 
 CC := gcc
 WFLAGS := -Wall -Werror -Wextra
-CFLAGS = $(WFLAGS) #-fsanitize=address
+CFLAGS = $(WFLAGS)
 
 LMATH := -lm
 LPTHREAD := -lpthread
-# SDL = SDL2/sources/SDL2.a?
 ifeq ($(shell uname), Darwin)
 	LSDL := /Library/Frameworks/SDL2.framework/SDL2
 else
@@ -36,7 +35,7 @@ OBJDIR := objects/
 
 INCLUDES = -I$(INCDIR) \
 	-I$(dir $(LIBFT))includes \
-	-I$(dir $(LIBFT_PNM))includes
+	-I$(dir $(LIBFT_PNM))includes \
 
 HEADERS = $(addprefix $(INCDIR), \
 	wolf3d.h \

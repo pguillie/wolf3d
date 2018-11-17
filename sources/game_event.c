@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:37:56 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 22:08:13 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 23:43:53 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ static void	game_event_key(SDL_Event event, t_engine *data)
 {
 	int	quality;
 
-	if (event.key.keysym.sym == SDLK_1)
+	if (event.key.keysym.sym == SDLK_0)
+		quality = 0;
+	else if (event.key.keysym.sym == SDLK_1)
 		quality = 1;
 	else if (event.key.keysym.sym == SDLK_2)
 		quality = 2;
-	else if (event.key.keysym.sym == SDLK_3)
-		quality = 3;
 	else
 	{
 		game_set_action(event, data);

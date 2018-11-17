@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 20:34:23 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 20:45:07 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 23:43:12 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static int	get_file_path(char *file, int quality)
 
 	ft_strcpy(file, "textures/");
 	len = 9;
-	if (quality == 1)
+	if (quality == 0)
+	{
+		ft_strcat(file, "misc/");
+		len += 5;
+	}
+	else if (quality == 1)
 	{
 		ft_strcat(file, "low/");
 		len += 4;
 	}
 	else if (quality == 2)
-	{
-		ft_strcat(file, "medium/");
-		len += 7;
-	}
-	else if (quality == 3)
 	{
 		ft_strcat(file, "high/");
 		len += 5;

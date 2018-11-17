@@ -6,7 +6,7 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 10:31:55 by pguillie          #+#    #+#             */
-/*   Updated: 2018/10/24 18:52:41 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/17 23:50:09 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	delete_data(t_engine data)
 	i = 0;
 	while (i < data.map.h)
 		free(data.map.layout[i++]);
-	free(data.map.layout);
+	if (i)
+		free(data.map.layout);
 }
