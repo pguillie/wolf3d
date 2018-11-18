@@ -6,12 +6,12 @@
 /*   By: pguillie <pguillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/21 16:50:07 by pguillie          #+#    #+#             */
-/*   Updated: 2018/11/17 19:10:44 by pguillie         ###   ########.fr       */
+/*   Updated: 2018/11/18 18:02:01 by pguillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF_3D_H
-# define WOLF_3D_H
+#ifndef WOLF3D_H
+# define WOLF3D_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -28,11 +28,6 @@
 # include "types/t_move.h"
 # include "types/t_rotate.h"
 # include "types/t_wall.h"
-
-// debug
-#include <stdio.h>
-#include <time.h>
-//
 
 t_error		engine_start(t_engine *engine_data, const char *data_file);
 void		engine_stop(t_engine engine_data);
